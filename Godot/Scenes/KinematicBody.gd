@@ -26,7 +26,11 @@ func _exit_tree():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
-	#Camera Movement Towards Cursor#
+	_movement()
+	pass
+	
+func _movement():
+		#Camera Movement Towards Cursor#
 	var dir = get_node("Yaw/Camera").get_global_transform().basis
 	direction = Vector3(0, 0, 0)
 	if Input.is_key_pressed(KEY_A):
@@ -40,9 +44,9 @@ func _physics_process(delta):
 	direction.y = 0
 	if Input.is_key_pressed(KEY_SPACE):
 		direction += Vector3(0,1,0)
+		
+	#direction += Vector3(0,-0.5,0)
 	direction = direction.normalized()
-	
-	
 	
 	move_and_slide(direction * speed, Vector3(0, 1, 0))
 	pass

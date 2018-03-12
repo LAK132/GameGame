@@ -11,8 +11,12 @@ config_version=3
 [application]
 
 config/name="Game Game"
-run/main_scene="res://Scenes/FirstScene.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+global="*res://Scenes/Scripts/global.gd"
 
 [rendering]
 
