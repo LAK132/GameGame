@@ -3,33 +3,36 @@ extends "res://nodeeditor/Node.gd"
 var menu = null
 var menuSock = null
 var popup = null
+onready var nodeeditor = get_node("../../../")
+var trigger = null
 
 func _ready():
 	menu = MenuButton.new()
 	menu.flat = false
 	menuSock = insert_child(0, TYPE_INT, menu)
 	popup = menu.get_popup()
-	popup.add_item("Add", 0)
-	popup.add_item("Subtract", 1)
-	popup.add_item("Multiply", 2)
-	popup.add_item("Divide", 3)
-	popup.add_item("Switch", 4)
-	popup.add_item("Interface", 5)
+
+	var i = 0
+	for k in nodeeditor.worldtrigger.keys():
+		popup.add_item(k, i)
+		i = i + 1
+
 	popup.connect("id_pressed", self, "_on_item_pressed")
 	menu.text = popup.get_item_text(0)
 
 	title = "Interface"
-	add_input(TYPE_INT, Color(0,1,0), "A")
-	add_input(TYPE_INT, Color(0,1,0), "B")
-	add_output(TYPE_INT, Color(0,1,0), "A+B")
-	inputs[0].data = 1
-	inputs[1].data = 1
+	add_input(TYPE_BOOL, Color(0,0,1), "A")
+	inputs[1].data = false
 	poll(true)
 
 func _on_item_pressed(ID):
 	menu.text = popup.get_item_text(ID)
 	menuSock.updated = true
 	menuSock.data = ID
+	if nodeeditor.worldtrigger.has(popup.get_item_text(ID)):
+		trigger = nodeeditor.worldtrigger[popup.get_item_text(ID)]
+	else:
+		trigger = null
 	menuSock.node.update()
 
 func poll(force = false):
@@ -45,14 +48,10 @@ func poll(force = false):
 			pass
 	var outputchanged = false
 	if (inputchanged || force): # recalculate outputs
-		#outputs[0].data =
-		var inpt = inputs[0].get_data()
-		if inpt == null:
-			inpt = inputs[1].get_data() + inputs[2].get_data()
-		outputs[0].data = inpt
-		outputs[0].set_text(String(outputs[0].data))
-		outputs[0].updated = true
+		var inpt = inputs[1].get_data()
 		outputchanged = true
+		if trigger != null:
+			trigger.call_func(inpt == true)
 	print(get_instance_id())
 	for o in outputs:
 		print(o.data)

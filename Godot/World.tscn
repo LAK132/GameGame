@@ -9,6 +9,7 @@
 [node name="World" type="Node"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="0"]
 
