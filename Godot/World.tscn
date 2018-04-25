@@ -5,7 +5,40 @@
 [ext_resource path="res://materials/ThreadPlateFloor.tres" type="Material" id=3]
 [ext_resource path="res://models/static/plane.obj" type="ArrayMesh" id=4]
 
-[node name="World" type="Node"]
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node
+
+onready var node1 = get_node(\"Camera/NodeEditor/GraphEdit\")
+onready var node2 = get_node(\"Camera/NodeEditor/DeleteNode\")
+onready var node3 = get_node(\"Camera/NodeEditor/AddNode\")
+var pressed = false
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	node1.hide()
+	node2.hide()
+	node3.hide()
+	pass
+
+
+
+func _process(delta):
+	if Input.is_action_just_pressed(\"ui_tab\"):
+		if node1.is_visible_in_tree():
+			node1.hide()
+			node2.hide()
+			node3.hide()
+		else:
+			node1.show()
+			node2.show()
+			node3.show()
+	pass
+"
+
+[node name="World" type="Node" index="0"]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="0"]
 
