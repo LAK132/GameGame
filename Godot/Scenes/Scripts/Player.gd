@@ -61,12 +61,12 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3(0,1,0), 0.05, 4, deg2rad(SLOPE))
 	
 func _input(event):
-    if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-        camera_holder.rotate_x(deg2rad(event.relative.y * SENSITIVITY * -1))
-        self.rotate_y(deg2rad(event.relative.x * SENSITIVITY * -1))
+	if event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		camera_holder.rotate_x(deg2rad(event.relative.y * SENSITIVITY * -1))
+		self.rotate_y(deg2rad(event.relative.x * SENSITIVITY * -1))
 
-        var camera_rot = camera_holder.rotation_degrees
-        camera_rot.x = clamp(camera_rot.x, -70, 70)
-        camera_holder.rotation_degrees = camera_rot
+		var camera_rot = camera_holder.rotation_degrees
+		camera_rot.x = clamp(camera_rot.x, -70, 70)
+		camera_holder.rotation_degrees = camera_rot
 
 
