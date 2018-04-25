@@ -9,7 +9,7 @@ path="res://.import/plane.obj-373c0b08f2e398520c53c3771863f929.mesh"
 files=[ "res://.import/plane.obj-373c0b08f2e398520c53c3771863f929.mesh" ]
 
 source_file="res://models/static/plane.obj"
-source_md5="f87283ee8310210929c595cbe3efeb5e"
+source_md5="eff9028b9368f33cafa1bb6182ee8370"
 
 dest_files=[ "res://.import/plane.obj-373c0b08f2e398520c53c3771863f929.mesh", "res://.import/plane.obj-373c0b08f2e398520c53c3771863f929.mesh" ]
 dest_md5="9dcd040c84ad51b9b5249a80a4195ab5"

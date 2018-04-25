@@ -3,7 +3,7 @@
 [ext_resource path="res://nodeeditor/NodeEditor.gd" type="Script" id=1]
 [ext_resource path="res://nodeeditor/GraphEdit.gd" type="Script" id=2]
 
-[node name="NodeEditor" type="CanvasLayer" index="0"]
+[node name="NodeEditor" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
