@@ -24,7 +24,7 @@ func poll(force = false):
 			pass
 	var outputchanged = false
 	if (inputchanged || force): # recalculate outputs
-		if (inputs[0]):
+		if (inputs[0].get_data()):
 			outputs[0].data = inputs[1].get_data()
 		else:
 			outputs[0].data = inputs[2].get_data()

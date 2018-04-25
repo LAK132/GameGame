@@ -13,18 +13,16 @@ var editor
 func _ready():
 	editor = get_node(\"../GraphEdit\")
 	popup = get_popup()
-	popup.add_item(\"Add\", 0)
-	popup.add_item(\"Subtract\", 1)
-	popup.add_item(\"Multiply\", 2)
-	popup.add_item(\"Divide\", 3)
-	popup.add_item(\"Switch\", 4)
+	popup.add_item(\"Math\", 0)
+	popup.add_item(\"Compare\", 1)
+	popup.add_item(\"Switch\", 2)
+	popup.add_item(\"Interface\", 3)
 	popup.connect(\"id_pressed\", self, \"_on_item_pressed\")
 
 func _on_item_pressed(ID):
-	editor.add_node(ID)
-"
+	editor.add_node(ID)"
 
-[node name="NodeEditor" type="CanvasLayer"]
+[node name="NodeEditor" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )

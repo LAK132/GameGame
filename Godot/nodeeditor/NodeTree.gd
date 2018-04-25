@@ -16,11 +16,10 @@
 
 extends GraphEdit
 
-onready var AddNode = preload("res://nodeeditor/types/Add.gd")
-onready var SubNode = preload("res://nodeeditor/types/Subtract.gd")
-onready var MulNode = preload("res://nodeeditor/types/Multiply.gd")
-onready var DivNode = preload("res://nodeeditor/types/Divide.gd")
+onready var MathNode = preload("res://nodeeditor/types/Math.gd")
+onready var CompNode = preload("res://nodeeditor/types/Compare.gd")
 onready var SwtNode = preload("res://nodeeditor/types/Switch.gd")
+onready var ItrNode = preload("res://nodeeditor/types/Interface.gd")
 
 onready var link_res = preload("res://nodeeditor/Link.gd")
 
@@ -59,15 +58,13 @@ func add_node(ID):
 	var node = null
 	match ID:
 		0: #add
-			node = AddNode.new()
-		1: #subtract
-			node = SubNode.new()
-		2: #multiply
-			node = MulNode.new()
-		3: #divide
-			node = DivNode.new()
-		4: #switch
+			node = MathNode.new()
+		1: #compare
+			node = CompNode.new()
+		2: #switch
 			node = SwtNode.new()
+		3: #interface
+			node = ItrNode.new()
 	if (node != null):
 		node.init(self)
 		nodes.append(node)

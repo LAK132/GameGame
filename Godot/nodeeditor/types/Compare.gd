@@ -9,18 +9,18 @@ func _ready():
 	menu.flat = false
 	menuSock = insert_child(0, TYPE_BOOL, menu)
 	popup = menu.get_popup()
-	popup.add_item("Add", 0)
-	popup.add_item("Subtract", 1)
-	popup.add_item("Multiply", 2)
-	popup.add_item("Divide", 3)
+	popup.add_item(">", 0)
+	popup.add_item("<", 1)
+	popup.add_item("==", 2)
+	popup.add_item("!=", 3)
 	popup.connect("id_pressed", self, "_on_item_pressed")
 	menu.text = popup.get_item_text(0)
 	menuSock.data = 0
 
-	title = "Math"
+	title = "Compare"
 	add_socket(TYPE_INT, Color(0,1,0), true, "A")
 	add_socket(TYPE_INT, Color(0,1,0), true, "B")
-	add_socket(TYPE_INT, Color(0,1,0), false, "O")
+	add_socket(TYPE_BOOL, Color(0,0,1), false, "O")
 	inputs[1].data = 1
 	inputs[2].data = 1
 	poll(true)
@@ -54,15 +54,19 @@ func poll(force = false):
 		if mode == null:
 			mode = 0
 		if mode == 0:
-			outputs[0].data = inpa + inpb
+			outputs[0].data = inpa > inpb
 		elif mode == 1:
-			outputs[0].data = inpa - inpb
+			outputs[0].data = inpa < inpb
 		elif mode == 2:
-			outputs[0].data = inpa * inpb
-		elif mode == 3 && inpb != 0:
-			outputs[0].data = inpa / inpb
-		outputs[0].set_text(String(outputs[0].data))
-		#outputs[0].set_text(String(menuSock.data))
+			outputs[0].data = inpa == inpb
+		elif mode == 3:
+			outputs[0].data = inpa != inpb
+		if outputs[0].data != true && outputs[0].data != false:
+			outputs[0].data = false
+		if outputs[0].data:
+			outputs[0].set_text("True")
+		else:
+			outputs[0].set_text("False")
 		outputs[0].updated = true
 		outputchanged = true
 	print(get_instance_id())
