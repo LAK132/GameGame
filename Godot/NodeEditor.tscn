@@ -22,7 +22,7 @@ func _ready():
 func _on_item_pressed(ID):
 	editor.add_node(ID)"
 
-[node name="NodeEditor" type="CanvasLayer" index="0"]
+[node name="NodeEditor" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
